@@ -3,23 +3,33 @@
 <head>
     <style>
         body { font-family: sans-serif; background: #f4f4f4; margin: 0; }
-        header { background: #333; color: white; padding: 20px; text-align: center; }
-        .container { display: flex; justify-content: center; padding: 20px; }
-        .agent-card { background: white; padding: 20px; margin: 10px; border-radius: 8px; width: 200px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        header { background: #333; color: white; padding: 40px 20px; text-align: center; }
+        .search-box { margin-top: 20px; padding: 10px; width: 300px; border-radius: 5px; border: none; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        .agent-card { background: white; padding: 20px; margin: 10px; border-radius: 8px; width: 220px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+        button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
     <header>
         <h1>AI Agent Marketplace</h1>
+        <input type="text" class="search-box" placeholder="Search agents (e.g. Email)...">
     </header>
     <div class="container">
         <div class="agent-card">
             <h3>Email Writer</h3>
-            <p>Auto-generate emails.</p>
+            <p>Write professional emails in seconds.</p>
+            <button>View Agent</button>
         </div>
         <div class="agent-card">
             <h3>Social Poster</h3>
-            <p>Auto-post on social.</p>
+            <p>Create viral posts for Twitter & LinkedIn.</p>
+            <button>View Agent</button>
+        </div>
+        <div class="agent-card">
+            <h3>Code Helper</h3>
+            <p>Debug your code with AI power.</p>
+            <button>View Agent</button>
         </div>
     </div>
 </body>
