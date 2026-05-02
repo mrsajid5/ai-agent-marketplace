@@ -103,5 +103,19 @@
             document.getElementById('unlockedList').innerHTML = unlocked.map(a => `<p>✅ ${a}</p>`).join('');
         }
     </script>
+    function sendMessage() {
+            let msg = document.getElementById('userInput').value;
+            if (msg.trim() === "") return; // Khali message na jaye
+
+            let display = document.getElementById('chatDisplay');
+            display.innerHTML += `<p><b>You:</b> ${msg}</p>`;
+            document.getElementById('userInput').value = '';
+
+            // AI Simulation (1 second delay)
+            display.innerHTML += `<p><b>AI:</b> Thinking...</p>`;
+            setTimeout(() => {
+                display.lastElementChild.innerHTML = `<b>AI:</b> This is a sample response for your input: "${msg}". (API integration abhi baqi hai!)`;
+            }, 1000);
+        }
 </body>
 </html>
