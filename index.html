@@ -3,52 +3,62 @@
 <head>
     <style>
         body { font-family: sans-serif; background: #f4f4f4; margin: 0; }
-        header { background: #333; color: white; padding: 40px 20px; text-align: center; }
+        header { background: #333; color: white; padding: 20px; text-align: center; }
+        .wallet { background: #444; padding: 10px; margin-top: 10px; border-radius: 5px; display: inline-block; }
         .search-box { margin-top: 20px; padding: 10px; width: 300px; border-radius: 5px; border: none; }
         .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
         .agent-card { background: white; padding: 20px; margin: 10px; border-radius: 8px; width: 220px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+        .price { color: #28a745; font-weight: bold; margin: 10px 0; display: block; }
         button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
         
-        /* Modal Style */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 30px; border-radius: 8px; max-width: 400px; text-align: center; }
-        .close-btn { background: #6c757d; margin-top: 15px; }
-        .access-btn { background: #28a745; margin-top: 15px; margin-right: 10px; }
+        .access-btn { background: #28a745; margin-top: 15px; }
     </style>
 </head>
 <body>
     <header>
         <h1>AI Agent Marketplace</h1>
-        <input type="text" id="searchInput" class="search-box" placeholder="Search agents (e.g. Email)..." onkeyup="filterAgents()">
+        <div class="wallet">Your Balance: <span id="userBalance">100</span> Credits</div>
+        <br>
+        <input type="text" id="searchInput" class="search-box" placeholder="Search agents..." onkeyup="filterAgents()">
     </header>
+
     <div class="container" id="agentContainer">
         <div class="agent-card">
             <h3>Email Writer</h3>
-            <p>Write professional emails in seconds.</p>
-            <button onclick="openModal('Email Writer', 'This agent uses AI to write professional emails, proposals, and cover letters instantly.')">View Agent</button>
+            <span class="price">10 Credits</span>
+            <p>Write emails in seconds.</p>
+            <button onclick="openModal('Email Writer', 'This agent uses AI to write professional emails.', 10)">View Agent</button>
         </div>
         <div class="agent-card">
             <h3>Social Poster</h3>
-            <p>Create viral posts for Twitter & LinkedIn.</p>
-            <button onclick="openModal('Social Poster', 'This agent generates engaging social media posts and hashtags based on your topic.')">View Agent</button>
+            <span class="price">15 Credits</span>
+            <p>Create viral posts.</p>
+            <button onclick="openModal('Social Poster', 'This agent generates social media posts.', 15)">View Agent</button>
         </div>
         <div class="agent-card">
             <h3>Code Helper</h3>
-            <p>Debug your code with AI power.</p>
-            <button onclick="openModal('Code Helper', 'This agent reviews your code, finds bugs, and suggests modern fixes.')">View Agent</button>
+            <span class="price">20 Credits</span>
+            <p>Debug your code.</p>
+            <button onclick="openModal('Code Helper', 'This agent reviews your code.', 20)">View Agent</button>
         </div>
     </div>
 
     <div id="agentModal" class="modal">
         <div class="modal-content">
-            <h2 id="modalTitle">Agent Name</h2>
-            <p id="modalDesc">Agent Description</p>
-            <button class="access-btn" onclick="alert('Redirecting to Checkout...')">Get Access</button>
-            <button class="close-btn" onclick="closeModal()">Close</button>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+            <p><strong>Cost:</strong> <span id="modalPrice"></span> Credits</p>
+            <button class="access-btn" onclick="purchaseAgent()">Get Access</button>
+            <button onclick="closeModal()">Close</button>
         </div>
     </div>
 
     <script>
+        let balance = 100;
+        let currentCost = 0;
+
         function filterAgents() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('agent-card');
@@ -58,14 +68,25 @@
             }
         }
 
-        function openModal(title, desc) {
+        function openModal(title, desc, price) {
+            currentCost = price;
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalPrice').innerText = price;
             document.getElementById('agentModal').style.display = 'flex';
         }
 
-        function closeModal() {
-            document.getElementById('agentModal').style.display = 'none';
+        function closeModal() { document.getElementById('agentModal').style.display = 'none'; }
+
+        function purchaseAgent() {
+            if (balance >= currentCost) {
+                balance -= currentCost;
+                document.getElementById('userBalance').innerText = balance;
+                alert('Success! Agent unlocked.');
+                closeModal();
+            } else {
+                alert('Not enough credits!');
+            }
         }
     </script>
 </body>
