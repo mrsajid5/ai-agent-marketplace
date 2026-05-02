@@ -26,6 +26,10 @@
             <h3>Social Poster</h3>
             <button onclick="purchaseAgent('Social Poster', 15)">Get Access (15 Cr)</button>
         </div>
+        <div class="agent-card">
+            <h3>Code Helper</h3>
+            <button onclick="purchaseAgent('Code Helper', 20)">Get Access (20 Cr)</button>
+        </div>
     </div>
 
     <div class="unlocked-section">
@@ -38,6 +42,12 @@
         let unlocked = [];
 
         function purchaseAgent(name, cost) {
+            // Check if already unlocked
+            if (unlocked.includes(name)) {
+                alert('You already have access to ' + name);
+                return;
+            }
+
             if (balance >= cost) {
                 balance -= cost;
                 unlocked.push(name);
