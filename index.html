@@ -2,19 +2,25 @@
 <html lang="en">
 <head>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
-        .agent-card { background: white; padding: 15px; margin: 10px; border-radius: 8px; display: inline-block; width: 200px; }
+        body { font-family: sans-serif; background: #f4f4f4; margin: 0; }
+        header { background: #333; color: white; padding: 20px; text-align: center; }
+        .container { display: flex; justify-content: center; padding: 20px; }
+        .agent-card { background: white; padding: 20px; margin: 10px; border-radius: 8px; width: 200px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
-    <h1>AI Agent Marketplace</h1>
-    <div class="agent-card">
-        <h3>Email Writer</h3>
-        <p>Auto-generate emails.</p>
-    </div>
-    <div class="agent-card">
-        <h3>Social Poster</h3>
-        <p>Auto-post on social.</p>
+    <header>
+        <h1>AI Agent Marketplace</h1>
+    </header>
+    <div class="container">
+        <div class="agent-card">
+            <h3>Email Writer</h3>
+            <p>Auto-generate emails.</p>
+        </div>
+        <div class="agent-card">
+            <h3>Social Poster</h3>
+            <p>Auto-post on social.</p>
+        </div>
     </div>
 </body>
 </html>
